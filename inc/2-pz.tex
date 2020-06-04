@@ -1,0 +1,152 @@
+\let\Omega\varOmega
+
+\section{Математическая постановка задачи}
+
+Формализуем задачу, описанную в предыдущем пункте. Во-первых, поместим
+излучающий электрод в начало координат ${\bm x = 0}$ и введем обозначение $I$ для силы
+протекающего через него тока.
+
+<Здесь вывод задачи Дирихле для электрического потенциала. Вывод и математическая постановка для кажущегося сопротивления потенцил- и градиент-зондов. Полагаю, нужно хорошо разобрать информацию в источнике \cite{elec} и в отчете по БКЗ Магадеева.>
+
+Электрический потенциал ${u = u(\bm x)}$ электрического поля удовлетворяет задаче Дирихле для уравнения Пуассона \cite[с. 67]{elec}:
+\begin{alignat}{2}
+\nabla \cdot (\nabla u(\bm x) / \rho(\bm x)) &= f(\bm x),\qquad && \bm x \in \Omega, \label{eq:poisson}\\
+u(\bm x) &= 0, && \bm x \in \partial \Omega, \label{eq:dirichet}
+\end{alignat}
+где $\Omega$ --- бесконечная область пространства,
+${\partial \Omega}$ --- граница области $\Omega$,
+точки которой находятся на бесконечности (${\bm x \in \partial \Omega: |\bm x| \rightarrow \infty}$),
+${f = f(\bm x)}$ --- источниковый член.
+
+Источниковый член в случае точечного источника потенциала в точке ${\bm x = 0}$:
+\begin{equation}
+f(\bm x) = -I \delta(\bm x),
+\end{equation}
+где $\delta(\bm x)$ -- обобщенная функция дельта-функция Дирака.
+
+
+\subsection{Слабая постановка}
+
+Достаточно гладкая функция $u$, удовлетворяющий обеим равенствам \eqref{eq:poisson} и \eqref{eq:dirichet}, известна как классическое решение для краевой задачи. Для задачи Дирихле, функция $u$ является классическим решением, только если она дважды непрерывно дифференцируемая в открытой области $\Omega$ ($u \in C^2(\Omega)$) и непрерывная в закрытой области $\Omega$ ($u \in C^0(\overline \Omega)$). В случаях областей с негладкими границами или функций, не являющихся гладкими, $f$ --- источниковых членов (к тому же функция УЭС $\rho$ негладкая), функция $u$, удовлетворяющая \eqref{eq:poisson}--\eqref{eq:dirichet}, может не быть гладкой (или обычной) достаточно, чтобы считалась классическим решением. Поскольку $f$ не является гладкой функцинй, то вторая производная решения $u$ не является гладкой, и следовательно ${u \notin C^2(\Omega)}$ и не существует классического решения. Для таких задач, которые возникают из вполне обоснованных математических моделей, необходима альтернативная запись краевых задач. Поскольку эта альтернативная запись менее ограничивает в плане допустимых входных данных, она названа слабой постановкой \cite[с. 14]{FEFIS}.
+
+<Текст на английском языке будет переден на русский язык.>
+
+FEniCS is based on the finite element method, which is a general and efficient
+mathematical machinery for the numerical solution of PDEs. The starting
+point for the finite element methods is a PDE expressed in variational form.
+Experience shows that you can work with FEniCS as
+a tool to solve PDEs even without thorough knowledge of the finite element
+method, as long as you get somebody to help you with formulating the PDE
+as a variational problem \cite[с. 12]{FEniCS}.
+
+The basic recipe for turning a PDE into a variational problem is to multiply
+the PDE by a function $v$, integrate the resulting equation over the domain $\Omega$,
+and perform integration by parts of terms with second-order derivatives. The
+function $v$ which multiplies the PDE is called a test function. The unknown
+function $u$ to be approximated is referred to as a trial function. The terms
+trial and test functions are used in FEniCS programs too. The trial and
+test functions belong to certain so-called function spaces that specify the
+properties of the functions.
+
+В данном случе, сначала умножим уравнение Пуассона на тестовую функцию $v$ и интегрируем по заданной области $\Omega$: 
+\begin{equation} \label{eq:none1}
+  - \int_\Omega \nabla \cdot (\nabla u / \rho)v \dx 
+  = \int_\Omega f v \dx.
+\end{equation}
+
+We here let $\dx$ denote the differential element for integration over the domain
+$\Omega$. We will later let $\ds$ denote the differential element for integration over
+the boundary of $\Omega$.
+
+Как правило, когда получают вариационную постановку, избавляются от высших степеней производных.
+Здесь мы имеем производную второго порядка функции $u$, которая может быть переведена в производные первого порядка функций $u$ и $v$ посредством применения метода интегрирования по частям.
+Формула гласит
+\begin{equation} \label{eq:IBP}
+  \int_\Omega \nabla \cdot (\nabla u / \rho)v \dx
+= \int_{\partial\Omega} \frac 1 \rho {\partial u\over\partial n}v \ds
+- \int_\Omega \frac 1 \rho \nabla u\cdot\nabla v \dx,
+\end{equation}
+где $\frac{\partial u}{\partial n} = \nabla u \cdot n$ есть производная $u$ по направлению внешней нормали $n$ на границе.
+
+Еще одной особенностью вариационных постановок является то, что тестовая функция должна зануляться на участках границы, где известно $u$.
+В нашей задаче, это значит, что $v = 0$ на всей границе $\partial\Omega$.
+Первый член в правой части уравнения следовательно пропадает.
+Из \eqref{eq:none1} и \eqref{eq:IBP} следует
+\begin{equation} \label{eq:weakform}
+- \int_\Omega \frac 1 \rho \nabla u\cdot\nabla v \dx = \int_\Omega f v \dx.
+\end{equation}
+
+If we require that this equation holds for all test functions $v$ in some suitable space $\hat V$, the so-called test space, we obtain a well-defined mathematical
+problem that uniquely determines the solution $u$ which lies in some (possibly different) function space $V$, the so-called trial space. We refer to \eqref{eq:weakform} as
+the weak form or variational form of the original boundary-value problem
+\eqref{eq:poisson}--\eqref{eq:dirichet}.
+
+The proper statement of our variational problem now goes as follows: find
+$u \in V$ such that
+\begin{equation} \label{eq:varprob}
+- \int_\Omega \frac 1 \rho \nabla u\cdot\nabla v \dx = \int_\Omega f v \dx.
+\end{equation}
+
+The trial and test spaces $V$ and $\hat V$ are in the present problem defined as
+\begin{align}
+V &= \left\{v \in H^{1}(\Omega): v=0 \text { on } \partial \Omega\right\}, \\
+\hat{V} &= \left\{v \in H^{1}(\Omega): v=0 \text { on } \partial \Omega\right\}.
+\end{align}
+
+Область определения функций пространств есть $\Omega$,
+и эти функции удовлетворяют граничным условиям:
+значения функций на $\partial\Omega$ равны нулю.
+In short, $H^{1}(\Omega)$ is the mathematically well-known Sobolev space containing
+functions $v$ such that $v^2$ and $|\nabla v|^2$ have finite integrals over $\Omega$
+(essentially meaning that the functions are continuous). The solution of the underlying
+PDE must lie in a function space where the derivatives are also continuous,
+but the Sobolev space $H^{1}(\Omega)$ allows functions with discontinuous derivatives.
+This weaker continuity requirement of $u$ in the variational statement \eqref{eq:varprob},
+as a result of the integration by parts, has great practical consequences when it
+comes to constructing finite element function spaces. In particular, it allows
+the use of piecewise polynomial function spaces; i.e., function spaces constructed by stitching together polynomial functions on simple domains such
+as intervals, triangles, or tetrahedrons.
+
+
+\subsection{Аппроксимация}
+
+<Текст на английском языке будет переден на русский язык.>
+
+The variational problem \eqref{eq:varprob} is a continuous problem: it defines the solution u in the infinite-dimensional function space $V$. The finite element method
+for the Poisson equation finds an approximate solution of the variational problem \eqref{eq:varprob} by replacing the infinite-dimensional function spaces $V$ and $\hat V$ by
+discrete (finite-dimensional) trial and test spaces $V_h \subset V$ and $\hat V_h \subset \hat V$. The discrete variational problem reads: find $u_h \in V_h \subset V$ such that \cite[с. 14]{FEniCS}
+\begin{equation} \label{eq:varprob_approx}
+\int_{\Omega} \nabla u_{h} \cdot \nabla v \mathrm{d} x=\int_{\Omega} f v \mathrm{d} x \quad \forall v \in \hat{V}_{h} \subset \hat{V}.
+\end{equation}
+
+This variational problem, together with a suitable definition of the function spaces $V_h$ and $\hat V_h$, uniquely define our approximate numerical solution
+of Poisson’s equation \eqref{eq:poisson}. Note that the boundary conditions are encoded
+as part of the trial and test spaces. The mathematical framework may seem
+complicated at first glance, but the good news is that the finite element variational problem \eqref{eq:varprob_approx} looks the same as the continuous variational problem
+\eqref{eq:varprob}, and FEniCS can automatically solve variational problems like \eqref{eq:varprob_approx}!
+
+Приближенное решение разыскивается в виде:
+\begin{equation}
+u_h = \sum_{i=1}^N c_i \varphi_i(\bm x)
+\end{equation}
+где $\varphi_1(\bm x), \varphi_2(\bm x), ..., \varphi_N(\bm x)$
+--- некоторые заданные (базисные) функции,
+удовлетворящие граничным условиям;
+$c_1, c_2, ..., c_N$ --- неизвестные, подлежащие вычислению.
+Их находят, решая систему алгебраических уравнений \cite[с. 14]{FEM_intro}:
+\begin{equation}
+\int_\Omega \frac 1 \rho \nabla u_h \cdot \nabla \varphi_i \dx = \int_{\Omega} f v \mathrm{d} x, \quad i = 1, 2, ..., N.
+\end{equation}
+
+$\varphi_i(\bm x)$ --- базисная функция, непрерывная на $\Omega$,
+равная нулю на $\partial \Omega$ и заданная таким образом:
+\begin{equation}
+\varphi_i(\bm x_j) =
+\left\{ \begin{aligned}
+    0, \quad \text{если} \ \bm x_i \neq \bm x_j, \\
+    1, \quad \text{если} \ \bm x_i = \bm x_j;
+\end{aligned} \right.
+\end{equation}
+где $\bm x_i$ --- координаты $i$-того узла сетки.
+
+\clearpage
