@@ -34,12 +34,6 @@ make
 make clean
 ```
 
-Лицензия
---------
-[Attribution-ShareAlike 4.0 International (CC BY-SA 4.0)](http://creativecommons.org/licenses/by-sa/4.0/deed.ru)
-
-![CC BY SA](https://licensebuttons.net/l/by-sa/4.0/88x31.png)
-
 Благодарности
 -------------
 [Амету Умерову](https://github.com/Amet13/bachelor-diploma/) за основу шаблона LaTeX
