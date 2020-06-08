@@ -1,5 +1,6 @@
 %%% Преамбула %%%
 
+\usepackage[dvipsnames, table, hyperref]{xcolor} % Совместимо с tikz
 %\usepackage{blindtext}
 \usepackage{amsmath} % Математика
 \usepackage{mathtools}
@@ -9,18 +10,16 @@
 %\usepackage[no-math]{fontspec} % XeTeX
 %\usepackage{fontspec} % XeTeX
 
-
 \usepackage{xunicode} % Unicode для XeTeX
 \usepackage{xltxtra}  % Верхние и нижние индексы
 \usepackage{pdfpages} % Вставка PDF
 
-\usepackage{listings} % Оформление исходного кода
-\lstset{
-    basicstyle=\small\ttfamily, % Размер и тип шрифта
-    breaklines=true, % Перенос строк
-    tabsize=2, % Размер табуляции
-    literate={--}{{-{}-}}2 % Корректно отображать двойной дефис
-}
+% Листинги с исходным кодом программ
+\usepackage{fancyvrb}
+\usepackage{listings}
+\lccode`\~=0\relax %Без этого хака из-за особенностей пакета listings перестают работать конструкции с \MakeLowercase и т. п. в (xe|lua)latex
+
+
 
 % Шрифты, xelatex
 \defaultfontfeatures{Ligatures=TeX}
@@ -47,6 +46,8 @@
 %\usepackage{array, makecell}
 \usepackage{tabu}
 \usepackage{longtable}
+
+ 
 
 % Пути к каталогам с изображениями
 \usepackage{graphicx} % Вставка картинок и дополнений
