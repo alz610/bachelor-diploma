@@ -185,13 +185,35 @@ ${\varepsilon}$.
 
 421 узлов.
 
-\begin{figure}[H]
-  \includegraphics{exps/fullmesh_1}
-\end{figure}
-\begin{figure}[H]
-  \includegraphics{exps/fullmesh_2}
-  \caption{} \label{fig:fullmesh}
-\end{figure}
+\newcommand{\addtwoimg}[3]{
+
+  \begin{figure}[H]
+
+  \begin{subfigure}{0.5\textwidth}
+  \includegraphics[page=1]{#1} 
+  \caption{Источник потенциала}
+  \end{subfigure}
+  \begin{subfigure}{0.5\textwidth}
+  \includegraphics[page=2]{#1}
+  \caption{Система}
+  \end{subfigure}
+
+  \caption{#2}
+  \label{#3}
+
+  \end{figure}
+
+}
+
+\renewcommand{\addimg}[3]{
+  \begin{figure}[H]
+    \includegraphics{#1}
+    \caption{#2} \label{#3}
+  \end{figure}
+}
+
+\addtwoimg{exps/fullmesh_1}{}{}
+\addimg{exps/fullmesh_2}{}{fig:fullmesh}
 
 \stepcounter{exp} \theexp.
 Для расчетной сетки выбраны узлы, расположенные справа от оси ${r = 0}$,
@@ -200,106 +222,69 @@ ${\varepsilon}$.
 
 221 узлов.
 
-\begin{figure}[H]
-  \includegraphics{exps/1_mesh}
-\end{figure}
-\begin{figure}[H]
-  \includegraphics{exps/1_solve}
-\end{figure}
-\begin{figure}[H]
-  \includegraphics{exps/1_rhog}
-\end{figure}
+\newcommand{\addimgexp}[1]{
+  \makeatletter
+    \def\meshfn{exps/}
+    \g@addto@macro\meshfn{#1}
+    \g@addto@macro\meshfn{_mesh}
+
+    \def\solvefn{exps/}
+    \g@addto@macro\solvefn{#1}
+    \g@addto@macro\solvefn{_solve}
+
+    \def\rhogfn{exps/}
+    \g@addto@macro\rhogfn{#1}
+    \g@addto@macro\rhogfn{_rhog}
+  \makeatother
+
+  \addtwoimg{\meshfn}{Триангуляция}{}
+  \addtwoimg{\solvefn}{Решение потенциального поля}{}
+  \addimg{\rhogfn}{Кажущееся сопротивление}{}
+}
+
+\addimgexp{1}
 
 \stepcounter{exp} \theexp.
 Использованы узлы, равноотстоящие в логарифмическом масштабе.
 
 1510 узлов.
 
-\begin{figure}[H]
-  \includegraphics{exps/2_mesh}
-\end{figure}
-\begin{figure}[H]
-  \includegraphics{exps/2_solve}
-\end{figure}
-\begin{figure}[H]
-  \includegraphics{exps/2_rhog}
-\end{figure}
+\addimgexp{2}
 
 \stepcounter{exp} \theexp.
 Добавлены сегменты на местах разрыва коэффициента УЭС.
 
 7201 узлов.
 
-\begin{figure}[H]
-  \includegraphics{exps/3_mesh}
-\end{figure}
-\begin{figure}[H]
-  \includegraphics{exps/3_solve}
-\end{figure}
-\begin{figure}[H]
-  \includegraphics{exps/3_rhog}
-\end{figure}
+\addimgexp{3}
 
 \stepcounter{exp} \theexp.
 Использованы лагранжевые элементы ${\mathcal{P}_3}$.
 
 7201 узлов.
 
-\begin{figure}[H]
-  \includegraphics{exps/4_mesh}
-\end{figure}
-\begin{figure}[H]
-  \includegraphics{exps/4_solve}
-\end{figure}
-\begin{figure}[H]
-  \includegraphics{exps/4_rhog}
-\end{figure}
+\addimgexp{4}
 
 \refstepcounter{exp} \theexp \label{optimal}.
 Использован точечный источник вместо внутреннего граничного условия.
 
 6659 узлов.
 
-\begin{figure}[H]
-  \includegraphics{exps/5_mesh}
-\end{figure}
-\begin{figure}[H]
-  \includegraphics{exps/5_solve}
-\end{figure}
-\begin{figure}[H]
-  \includegraphics{exps/5_rhog}
-\end{figure}
+\addimgexp{5}
 
 \stepcounter{exp} \theexp.
 Добавлены на границе ${r = 0}$ узлы одномерной сетки.
 
 6845 узлов.
 
-\begin{figure}[H]
-  \includegraphics{exps/6_mesh}
-\end{figure}
-\begin{figure}[H]
-  \includegraphics{exps/6_solve}
-\end{figure}
-\begin{figure}[H]
-  \includegraphics{exps/6_rhog}
-\end{figure}
+\addimgexp{6}
 
 \refstepcounter{exp} \theexp.
 Добавлены сегменты возле мест разрыва коэффициента УЭС. Использованы лагранжевые элементы ${\mathcal{P}_2}$.
 
 156856 узлов.
 
-\begin{figure}[H]
-  \includegraphics{exps/7_mesh}
-\end{figure}
-\begin{figure}[H]
-  \includegraphics{exps/7_solve}
-\end{figure}
-\begin{figure}[H]
-  \includegraphics{exps/7_rhog}
-\end{figure}
-
+\addimgexp{7}
 
 \refstepcounter{exp} \theexp \label{best}.
 Использованы узлы, равноотстоящие в логарифмическом масштабе;
@@ -310,31 +295,31 @@ ${\varepsilon}$.
 
 \begin{figure}[H]
 \includegraphics{exps/last_curves}
-\caption{}
+\caption{Кажущееся сопротивление}
 %\label{fig:plot}
 \end{figure}
 
 \begin{figure}[H]
 \includegraphics{exps/last_tg_1}
-\caption{}
+\caption{Триангуляция}
 %\label{fig:plot}
 \end{figure}
 
 \begin{figure}[H]
 \includegraphics{exps/last_field_1}
-\caption{}
+\caption{Решение потенциального поля}
 %\label{fig:plot}
 \end{figure}
 
 \begin{figure}[H]
 \includegraphics{exps/last_tg_2}
-\caption{}
+\caption{Триангуляция}
 %\label{fig:plot}
 \end{figure}
 
 \begin{figure}[H]
 \includegraphics{exps/last_field_2}
-\caption{}
+\caption{Решение потенциального поля}
 %\label{fig:plot}
 \end{figure}
 
