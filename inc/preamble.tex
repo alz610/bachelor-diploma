@@ -15,9 +15,9 @@
 \usepackage{pdfpages} % Вставка PDF
 
 % Листинги с исходным кодом программ
-\usepackage{fancyvrb}
+% \usepackage{fancyvrb}
 \usepackage{listings}
-\lccode`\~=0\relax %Без этого хака из-за особенностей пакета listings перестают работать конструкции с \MakeLowercase и т. п. в (xe|lua)latex
+% \lccode`\~=0\relax %Без этого хака из-за особенностей пакета listings перестают работать конструкции с \MakeLowercase и т. п. в (xe|lua)latex
 
 
 
@@ -42,7 +42,7 @@
 \usepackage{multirow} % Сложные таблицы
 \usepackage{subcaption}
 \usepackage[export]{adjustbox}
-%\usepackage{tabularx}
+\usepackage{tabularx}
 %\usepackage{array, makecell}
 \usepackage{tabu}
 \usepackage{longtable}
@@ -115,7 +115,7 @@
 \usepackage{fancyhdr}
 \pagestyle{fancy}
 \fancyhf{}
-\cfoot{\thepage}
+\cfoot{\textrm{\thepage}}
 \fancyheadoffset{0mm}
 \fancyfootoffset{0mm}
 \setlength{\headheight}{17pt}
