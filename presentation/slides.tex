@@ -17,12 +17,35 @@
 \frametitle{\insertsection}
 
 \begin{itemize}    
-    \item Решение полных постановок задач весьма ресурсоемко
-    \item Задача разработки метода решения прямой задачи БКЗ
-    \item Решение математической постановки прямой задачи БКЗ неэффективно уже имеющимися средствами
+    \item палетки с любыми параметрами (без ограничений времени)
+    \item оценка возможности решения обратной задачи БКЗ в реальном времени
 \end{itemize}
+
+\textbf{Математическая постановка:}
+\begin{alignat}{2}
+\nabla \cdot (\nabla u(\bm x) / \rho(\bm x)) &= f(\bm x),\qquad && \bm x \in \Omega, \label{eq:poisson}\\
+u(\bm x) &= 0, && \bm x \in \partial \Omega. \label{eq:dirichet}
+\end{alignat}
+
+\textbf{Источниковый член}:
+\begin{equation}
+f(\bm x) = -I \delta(\bm x).
+\end{equation}
 \end{frame}
 
+\begin{frame}
+\frametitle{\insertsection}
+
+\begin{minipage}[t]{0.47\linewidth}
+    \textbf{Модель 1}
+    \center{\includegraphics[width=1\linewidth]{rho_model_1.png}}
+\end{minipage}
+\hfill
+\begin{minipage}[t]{0.47\linewidth}
+    \textbf{Модель 2}
+    \center{\includegraphics[width=1\linewidth]{rho_model_2.png}}
+\end{minipage}
+\end{frame}
 %-------------------------------------------------------------------------------
 
 \section{Способ решения}
@@ -68,13 +91,15 @@
 
 \textbf{Модель 1:}
 \begin{itemize}
-    \item Время вычисления расчетной палетки ${18 \text{ c } \pm 159 \text{ мс }}$, 7 проходов
+    \item Время вычисления расчетной палетки 1 мин 32 с
 \end{itemize}
+\bigskip
 
 \textbf{Модель 2:}
 \begin{itemize}
-    \item Время вычисления расчетной палетки ${16.5 \text{ c } \pm 176 \text{ мс}}$, 7 проходов
+    \item Время вычисления расчетной палетки 18.7 c
 \end{itemize}
+\bigskip
 
 \textbf{Критерии точности решения}:
 \begin{itemize}
