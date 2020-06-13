@@ -1,7 +1,6 @@
 %!TEX TS-program = xelatex
 
 \documentclass[xetex,mathserif,serif,t]{beamer}
-% \usefonttheme[onlymath]{serif}
 % Если хотим соотношение сторон 16:9
 % \documentclass[aspectratio=169,xetex,mathserif,serif,t]{beamer}
 
@@ -9,11 +8,7 @@
 \usetheme{MasterThesis} % Тема
 
 %%% Работа с русским языком
-\usepackage{amsmath} % Математика
-\usepackage{mathtools}
-\usepackage{mathspec} % XeTeX
-% \usepackage[no-math]{fontspec}
-\usepackage{xunicode,xltxtra}
+\usepackage{fontspec,xunicode,xltxtra}
 
 \defaultfontfeatures{Ligatures=TeX} % Для преобразования -- и ---
 \setmainfont{PT Sans}
@@ -25,7 +20,7 @@
 \newtheorem{rexample}{Пример}
 
 %%% Дополнительная работа с математикой
-\usepackage{amsfonts,amssymb,amsthm} % AMS
+\usepackage{amsmath,amsfonts,amssymb,amsthm,mathtools} % AMS
 \usepackage{icomma} % "Умная" запятая: $0,2$ --- число, $0, 2$ --- перечисление
 
 %%% Свои команды

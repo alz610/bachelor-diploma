@@ -16,21 +16,25 @@
 \begin{frame}
 \frametitle{\insertsection}
 
-\begin{itemize}    
-    \item палетки с любыми параметрами (без ограничений времени)
-    \item оценка возможности решения обратной задачи БКЗ в реальном времени
+% \textbf{Задачи:}
+% \begin{itemize}    
+%     \item палетки с любыми параметрами (без ограничений времени)
+%     \item оценка возможности решения обратной задачи БКЗ в реальном времени
+% \end{itemize}
+
+\textbf{Акутальность:}
+\begin{itemize}
+\item Решение полных постановок задач весьма ресурсоемко
+\item Задача разработки метода решения прямой задачи БКЗ
+\item Решение математической постановки прямой задачи БКЗ неэффективно уже имеющимися средствами
 \end{itemize}
+\bigskip
 
 \textbf{Математическая постановка:}
 \begin{alignat}{2}
-\nabla \cdot (\nabla u(\bm x) / \rho(\bm x)) &= f(\bm x),\qquad && \bm x \in \Omega, \label{eq:poisson}\\
+\nabla \cdot (\nabla u(\bm x) / \rho(\bm x)) &= -I \delta(\bm x),\qquad && \bm x \in \Omega, \label{eq:poisson}\\
 u(\bm x) &= 0, && \bm x \in \partial \Omega. \label{eq:dirichet}
 \end{alignat}
-
-\textbf{Источниковый член}:
-\begin{equation}
-f(\bm x) = -I \delta(\bm x).
-\end{equation}
 \end{frame}
 
 \begin{frame}
@@ -91,13 +95,13 @@ f(\bm x) = -I \delta(\bm x).
 
 \textbf{Модель 1:}
 \begin{itemize}
-    \item Время вычисления расчетной палетки 1 мин 32 с
+    \item Время вычисления расчетной палетки 17.421 с
 \end{itemize}
 \bigskip
 
 \textbf{Модель 2:}
 \begin{itemize}
-    \item Время вычисления расчетной палетки 18.7 c
+    \item Время вычисления расчетной палетки 17.839 с
 \end{itemize}
 \bigskip
 
