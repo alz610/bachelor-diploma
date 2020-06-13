@@ -66,6 +66,41 @@ u(\bm x) &= 0, && \bm x \in \partial \varOmega. \label{eq:dirichet}
 \end{itemize}
 \end{frame}
 
+Построение расчетной сетки с заданием узлов и графа для триангуляции расчетной области с помощью библиотеки triangle.
+
+\begin{frame}
+\frametitle{\insertsection}
+
+Расчетная сетка:
+\begin{itemize}
+\item расположения узлов на расчетной области
+\begin{itemize}
+  \item лучи, на которых лежат узлы
+  \item расположения узлов на лучах
+\end{itemize}
+\item варианты графов
+\item расположения узлов на границах зон
+\item дополнительные узлы при триангуляции
+\end{itemize}
+
+Решение методом конечных элементов на расчетной сетке:
+\begin{itemize}
+    \item различные степени полиномов
+\end{itemize}
+\end{frame}
+
+\begin{frame}
+\frametitle{\insertsection}
+
+Оптимальная расчетная схема:
+\begin{itemize}
+    \item лучи, на которых лежат узлы
+    \item узлы на лучах, равноотстоящие в логарифмическом масштабе;
+    \item вторая степень полинома
+    \item узлы на пересечениях границ зон с лучами и с концентрическими окружностями
+\end{itemize}
+\end{frame}
+
 %-------------------------------------------------------------------------------
 
 \section{Результаты}
@@ -96,12 +131,14 @@ u(\bm x) &= 0, && \bm x \in \partial \varOmega. \label{eq:dirichet}
 \textbf{Модель 1:}
 \begin{itemize}
     \item Время вычисления расчетной палетки 17.421 с
+    \item 4669 узлов расчетной сетки
 \end{itemize}
 \bigskip
 
 \textbf{Модель 2:}
 \begin{itemize}
     \item Время вычисления расчетной палетки 17.839 с
+    \item 4813 узлов расчетной сетки
 \end{itemize}
 \bigskip
 
