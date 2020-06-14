@@ -16,11 +16,12 @@
 \begin{frame}
 \frametitle{\insertsection}
 
-% \textbf{Задачи:}
-% \begin{itemize}    
-%     \item палетки с любыми параметрами (без ограничений времени)
-%     \item оценка возможности решения обратной задачи БКЗ в реальном времени
-% \end{itemize}
+\textbf{Задачи:}
+\begin{itemize}    
+    \item палетки с любыми параметрами
+    \item оценка возможности решения обратной задачи БКЗ
+\end{itemize}
+\bigskip
 
 \textbf{Акутальность:}
 \begin{itemize}
@@ -61,12 +62,12 @@ u(\bm x) &= 0, && \bm x \in \partial \varOmega.
 \begin{itemize}
     \item Язык программирования Python
     \item Вычислительная платформа FEniCS
-    \item Модуль triangle для триангуляции Делоне
+    \item Модуль triangle
     \item Компьютер: ОС Ubuntu 18.04 LTS, процессор Intel Pentium 4415U 2.30 ГГц
 \end{itemize}
 \end{frame}
 
-Построение расчетной сетки с заданием узлов и графа для триангуляции расчетной области с помощью библиотеки triangle.
+% Построение расчетной сетки с заданием узлов и графа для триангуляции расчетной области с помощью библиотеки triangle.
 
 \begin{frame}
 \frametitle{\insertsection}
@@ -82,10 +83,11 @@ u(\bm x) &= 0, && \bm x \in \partial \varOmega.
 \item расположения узлов на границах зон
 \item дополнительные узлы при триангуляции
 \end{itemize}
+\bigskip
 
 Решение методом конечных элементов на расчетной сетке:
 \begin{itemize}
-    \item различные степени полиномов
+    \item степень полинома
 \end{itemize}
 \end{frame}
 
@@ -94,11 +96,19 @@ u(\bm x) &= 0, && \bm x \in \partial \varOmega.
 
 Оптимальная расчетная схема:
 \begin{itemize}
-    \item лучи, на которых лежат узлы
-    \item узлы на лучах, равноотстоящие в логарифмическом масштабе;
+    \item узлы на лучах
     \item вторая степень полинома
+    \item отрезки графа на границах зон
     \item узлы на пересечениях границ зон с лучами и с концентрическими окружностями
 \end{itemize}
+
+\begin{minipage}[t]{0.47\linewidth}
+    \center{\includegraphics[width=1\linewidth]{plot_2_tg_1}}
+\end{minipage}
+\hfill
+\begin{minipage}[t]{0.47\linewidth}
+    \center{\includegraphics[width=1\linewidth]{plot_2_tg_2}}
+\end{minipage}
 \end{frame}
 
 %-------------------------------------------------------------------------------
